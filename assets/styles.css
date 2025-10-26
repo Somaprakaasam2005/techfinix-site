@@ -1,0 +1,49 @@
+/* styles.css — small visual tweaks to complement Tailwind */
+:root{--brand:#0047AB;--accent:#FFD700}
+html,body{font-family:'Poppins',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial}
+
+/* small overlay effect for hero text */
+#home h1{letter-spacing: -0.5px}
+
+/* make registration button pop */
+.btn-primary{background:var(--brand);color:white}
+
+/* Lightbox styles are handled inline via classes */
+
+/* Accessibility: focus outlines */
+a:focus,button:focus,input:focus,textarea:focus{outline:2px solid rgba(0,71,171,0.25);outline-offset:2px}
+
+/* Events hover and icon transitions */
+.event-card { cursor: default; }
+.event-card .icon { transition: color .18s ease, transform .18s ease; color: #f6c85f; }
+.event-card:hover .icon { color: #FFD700; transform: translateY(-2px); }
+
+/* Modal styles */
+#eventModal { display: none; }
+#eventModal.open { display: flex; }
+#eventModal .modal-inner { max-width: 720px; width: 94%; background: white; border-radius: 8px; padding: 1.25rem; }
+#eventModal .modal-title{ font-weight:700; color:var(--brand);} 
+#eventModal .modal-close { background:transparent; border:0; font-size:1.25rem }
+
+/* 3D flip card for event details */
+.event-card { perspective: 1200px; }
+.event-card .card-inner { position: relative; width: 100%; transform-style: preserve-3d; transition: transform 600ms cubic-bezier(.2,.8,.2,1); }
+.event-card .card-front, .event-card .card-back { backface-visibility: hidden; -webkit-backface-visibility: hidden; position: relative; transition: opacity 280ms ease, transform 600ms cubic-bezier(.2,.8,.2,1); }
+.event-card .card-back { position: absolute; inset: 0; transform: rotateY(180deg); opacity: 0; }
+.event-card.is-flipped .card-inner { transform: rotateY(180deg) scale(1.02); }
+.event-card .card-front { z-index: 2; }
+.event-card.is-flipped .card-front { opacity: 0; pointer-events: none; }
+.event-card.is-flipped .card-back { opacity: 1; z-index: 3; }
+.event-card .back-content { padding-top: 0.5rem; }
+.detailsBtn, .backBtn { cursor: pointer; }
+
+/* Prevent back face content from overflowing the card: allow scrolling inside back face */
+.event-card { position: relative; }
+.event-card .card-inner { min-height: 160px; }
+.event-card .card-back { overflow: auto; max-height: 100%; padding: 1rem; -webkit-overflow-scrolling: touch; box-sizing: border-box; }
+.event-card .card-back a, .event-card .card-back button { white-space: nowrap; }
+
+/* Focus styles for keyboard users */
+.event-card:focus { outline: 3px solid rgba(0,71,171,0.12); outline-offset: 4px; }
+
+
