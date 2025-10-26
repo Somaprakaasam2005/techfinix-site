@@ -107,6 +107,10 @@ document.addEventListener('DOMContentLoaded', function () {
       article.setAttribute('aria-pressed', 'true');
       // move focus to first focusable element inside the back face
       const backFace = article.querySelector('.card-back');
+      // ensure back face is scrolled to top so content appears from the first line
+      if (backFace) {
+        try { backFace.scrollTop = 0; } catch (err) { /* ignore */ }
+      }
       const focusable = backFace ? backFace.querySelectorAll(focusableSelector) : null;
       if (focusable && focusable.length) focusable[0].focus();
       // add trapping flag
