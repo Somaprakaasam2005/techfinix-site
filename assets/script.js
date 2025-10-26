@@ -1,22 +1,73 @@
 // script.js — small interactions: countdown, mobile menu, lightbox, back-to-top, simple form handler
 document.addEventListener('DOMContentLoaded', function () {
-  // Countdown to March 10, 2025 09:00:00
+  // Countdown to event (Nov 07, 2025 09:00 local)
   const countdownEl = document.getElementById('countdown');
-  const target = new Date('2025-03-10T09:00:00');
+  const target = new Date('2025-11-07T09:00:00');
+
+  // Helper: render pill markup if not already present
+  function ensurePills(container) {
+    if (!container) return null;
+    if (container.querySelector('.countdown-pills')) return container.querySelector('.countdown-pills');
+    const wrap = document.createElement('div');
+    wrap.className = 'countdown-pills';
+    const units = [
+      { key: 'days', label: 'Days' },
+      { key: 'hours', label: 'Hrs' },
+      { key: 'mins', label: 'Mins' },
+      { key: 'secs', label: 'Secs' }
+    ];
+    units.forEach((u, i) => {
+      const pill = document.createElement('div');
+      pill.className = 'pill';
+      pill.setAttribute('data-order', String(i+1));
+      pill.setAttribute('data-key', u.key);
+      pill.innerHTML = `<span class="value">--</span><span class="label">${u.label}</span>`;
+      wrap.appendChild(pill);
+    });
+    container.innerHTML = ''; // replace any previous text
+    container.appendChild(wrap);
+    return wrap;
+  }
 
   function updateCountdown() {
     const now = new Date();
     const diff = target - now;
     if (diff <= 0) {
-      countdownEl.textContent = 'Event is live or completed';
+      const finished = 'Event is live or completed';
+      if (countdownEl) {
+        countdownEl.textContent = finished;
+        countdownEl.classList.add('finished');
+      }
       clearInterval(cdInterval);
       return;
     }
+
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
     const mins = Math.floor((diff / (1000 * 60)) % 60);
     const secs = Math.floor((diff / 1000) % 60);
-    countdownEl.textContent = `${days}d ${hours}h ${mins}m ${secs}s`;
+
+    // render pills and update each unit; add a pop animation when the value changes
+    const wrap = ensurePills(countdownEl);
+    if (wrap) {
+      const updates = { days, hours, mins, secs };
+      Object.keys(updates).forEach((k) => {
+        const pill = wrap.querySelector(`.pill[data-key="${k}"]`);
+        if (!pill) return;
+        const valEl = pill.querySelector('.value');
+        const newVal = k === 'days' ? String(updates[k]) : String(updates[k]).padStart(2, '0');
+        if (valEl.textContent !== newVal) {
+          valEl.textContent = newVal;
+          // animate pop
+          pill.classList.remove('pop');
+          // force reflow
+          // eslint-disable-next-line no-unused-expressions
+          pill.offsetWidth;
+          pill.classList.add('pop');
+          setTimeout(() => pill.classList.remove('pop'), 380);
+        }
+      });
+    }
   }
   const cdInterval = setInterval(updateCountdown, 1000);
   updateCountdown();

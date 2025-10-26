@@ -46,4 +46,64 @@ a:focus,button:focus,input:focus,textarea:focus{outline:2px solid rgba(0,71,171,
 /* Focus styles for keyboard users */
 .event-card:focus { outline: 3px solid rgba(0,71,171,0.12); outline-offset: 4px; }
 
+/* Countdown styling and subtle animations */
+#countdown {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.6rem;
+	padding: 0.5rem 0.9rem;
+	border-radius: 999px;
+	font-weight: 600;
+	color: white;
+	background: linear-gradient(90deg, #0060c8 0%, #0047AB 40%, #FFD700 100%);
+	background-size: 200% 100%;
+	box-shadow: 0 6px 18px rgba(2,6,23,0.18);
+	transition: transform 220ms cubic-bezier(.2,.8,.2,1), box-shadow 220ms;
+}
+
+/* slow moving gradient */
+@keyframes gradientShift {
+	0% { background-position: 0% 50%; }
+	50% { background-position: 100% 50%; }
+	100% { background-position: 0% 50%; }
+}
+#countdown { animation: gradientShift 6s ease-in-out infinite; }
+
+/* quick tick when value updates */
+.tick {
+	animation: tickScale 360ms cubic-bezier(.2,.9,.2,1);
+}
+@keyframes tickScale {
+	0% { transform: scale(1); }
+	40% { transform: scale(1.08); }
+	100% { transform: scale(1); }
+}
+
+/* finished state */
+#countdown.finished { background: #ffd700; color: #003366; animation: none; }
+
+/* Pill-style countdown (separate units) */
+.countdown-pills { display: flex; gap: 0.6rem; align-items: center; }
+.pill { background: rgba(255,255,255,0.06); padding: 0.55rem 0.7rem; border-radius: 12px; min-width: 74px; text-align: center; color: white; box-shadow: 0 6px 18px rgba(2,6,23,0.12); transform-origin: center; }
+.pill .value { display: block; font-weight: 700; font-size: 0.95rem; }
+.pill .label { display: block; font-size: 0.65rem; opacity: 0.85; margin-top: 0.2rem; }
+
+/* entrance animation (staggered) */
+@keyframes pillEntrance { from { opacity: 0; transform: translateY(8px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1);} }
+.pill { animation: pillEntrance 420ms cubic-bezier(.2,.9,.2,1) both; }
+.pill[data-order="1"] { animation-delay: 0ms; }
+.pill[data-order="2"] { animation-delay: 80ms; }
+.pill[data-order="3"] { animation-delay: 160ms; }
+.pill[data-order="4"] { animation-delay: 240ms; }
+
+/* small pop on value change */
+.pill.pop { animation: popAnim 360ms cubic-bezier(.2,.9,.2,1); }
+@keyframes popAnim { 0% { transform: scale(1); } 40% { transform: scale(1.12); } 100% { transform: scale(1); } }
+
+/* responsive tweaks */
+@media (max-width: 480px) {
+	.pill { min-width: 52px; padding: 0.45rem 0.5rem; }
+	.pill .value { font-size: 0.85rem; }
+}
+
 
