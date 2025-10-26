@@ -31,10 +31,11 @@
             <a href="#about" class="hover:text-[#0047AB]">About</a>
             <a href="#events" class="hover:text-[#0047AB]">Events</a>
             <a href="#venue" class="hover:text-[#0047AB]">Venue</a>
-            <a href="#speakers" class="hover:text-[#0047AB]">Speakers</a>
+            <a href="#speakers" class="hover:text-[#0047AB]">Organiser</a>
             <a href="#gallery" class="hover:text-[#0047AB]">Gallery</a>
             <a href="#register" class="text-white bg-[#0047AB] px-4 py-2 rounded-md">Register</a>
           </nav>
+          <!-- headerCountdown removed per request; countdown will be shown inside the hero under Register Now -->
           <div class="md:hidden">
             <button id="mobileMenuBtn" class="p-2 rounded-md border border-gray-200">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -309,13 +310,15 @@ Your words are your paintbrush — craft a prompt that tells a story through art
         <div class="bg-white rounded-lg p-8 shadow">
           <h2 class="text-2xl font-semibold text-[#0047AB]">Register</h2>
           <p class="text-gray-600 mt-2">Fill in your details. We will contact you with further information.</p>
-          <form id="regForm" data-endpoint="/.netlify/functions/register" class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input type="text" name="name" placeholder="Name" required class="p-3 border rounded" />
-            <input type="text" name="college" placeholder="College" required class="p-3 border rounded" />
-            <input type="text" name="department" placeholder="Department" class="p-3 border rounded" />
-            <input type="text" name="year" placeholder="Year" class="p-3 border rounded" />
-            <input type="text" name="events" placeholder="Event(s)" class="p-3 border rounded md:col-span-2" />
-            <input type="tel" name="phone" placeholder="Contact Number" class="p-3 border rounded md:col-span-2" />
+          <!-- To send registrations to a Google Form: set `data-google-form` to your formResponse URL
+               and set each input's `data-google-entry` to the corresponding entry.<id> (replace placeholders). -->
+          <form id="regForm" data-endpoint="/.netlify/functions/register" data-google-form="https://docs.google.com/forms/d/e/FORM_ID/formResponse" class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input type="text" name="name" placeholder="Name" required class="p-3 border rounded" data-google-entry="entry.1111111111" />
+            <input type="text" name="college" placeholder="College" required class="p-3 border rounded" data-google-entry="entry.2222222222" />
+            <input type="text" name="department" placeholder="Department" class="p-3 border rounded" data-google-entry="entry.3333333333" />
+            <input type="text" name="year" placeholder="Year" class="p-3 border rounded" data-google-entry="entry.4444444444" />
+            <input type="text" name="events" placeholder="Event(s)" class="p-3 border rounded md:col-span-2" data-google-entry="entry.5555555555" />
+            <input type="tel" name="phone" placeholder="Contact Number" class="p-3 border rounded md:col-span-2" data-google-entry="entry.6666666666" />
             <button type="submit" class="bg-[#0047AB] text-white px-6 py-3 rounded-md md:col-span-2 hover:shadow-lg">Submit</button>
           </form>
           <div id="formMsg" class="mt-3 hidden p-3 rounded text-sm"></div>

@@ -112,6 +112,94 @@ document.addEventListener('DOMContentLoaded', function () {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       formMsg.classList.add('hidden');
+
+      // If a Google Form endpoint is configured via data-google-form, submit there using a hidden iframe
+      const googleUrl = form.dataset.googleForm && form.dataset.googleForm.trim();
+      if (googleUrl) {
+        // Create a unique iframe to target the form submission and avoid navigation
+        const iframeName = 'gf_iframe_' + Date.now();
+        const iframe = document.createElement('iframe');
+        iframe.name = iframeName;
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
+
+        // Build a plain HTML form that posts to Google Forms (avoids CORS issues)
+        const gf = document.createElement('form');
+        gf.action = googleUrl;
+        gf.method = 'POST';
+        gf.target = iframeName;
+        gf.acceptCharset = 'UTF-8';
+
+        // Collect inputs from the page that have data-google-entry attributes
+        const inputs = form.querySelectorAll('[data-google-entry]');
+        inputs.forEach((inp) => {
+          const entryName = inp.dataset.googleEntry;
+          if (!entryName) return;
+          const value = inp.value || '';
+          const hidden = document.createElement('input');
+          hidden.type = 'hidden';
+          hidden.name = entryName; // e.g. entry.123456789
+          hidden.value = value;
+          gf.appendChild(hidden);
+        });
+
+        // Optionally copy over a timestamp or other meta fields
+        const timestamp = document.createElement('input');
+        timestamp.type = 'hidden';
+        timestamp.name = 'timestamp';
+        timestamp.value = new Date().toISOString();
+        gf.appendChild(timestamp);
+
+        document.body.appendChild(gf);
+
+        // Disable submit button while submitting
+        const btn = form.querySelector('button[type="submit"]');
+        if (btn) { btn.disabled = true; btn.classList.add('opacity-60'); }
+
+        // Submit to Google Forms via hidden iframe (no CORS). Also POST to the serverless endpoint in parallel.
+        gf.submit();
+
+        // Prepare data for serverless POST
+        const endpoint = form.dataset.endpoint || '/.netlify/functions/register';
+        const data = {};
+        new FormData(form).forEach((v, k) => data[k] = v);
+
+        let serverOk = false;
+        try {
+          const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+          serverOk = res.ok;
+        } catch (err) {
+          console.error('Server POST failed:', err);
+          serverOk = false;
+        }
+
+        // After a brief delay (to allow Google Form submission), show combined result to user
+        setTimeout(() => {
+          if (btn) { btn.disabled = false; btn.classList.remove('opacity-60'); }
+          if (serverOk) {
+            formMsg.textContent = 'Thank you — your registration was sent.';
+            formMsg.classList.remove('text-red-600');
+            formMsg.classList.add('text-green-700');
+            try { form.reset(); } catch (err) { /* ignore */ }
+          } else {
+            formMsg.textContent = 'Registration sent to Google Forms. Server-side submission failed (saved locally?).';
+            formMsg.classList.remove('text-green-700');
+            formMsg.classList.add('text-yellow-600');
+          }
+          formMsg.classList.remove('hidden');
+          // remove temporary elements
+          try { document.body.removeChild(gf); } catch (e) { }
+          try { document.body.removeChild(iframe); } catch (e) { }
+        }, 1200);
+
+        return;
+      }
+
+      // Fallback: original serverless POST behavior
       const endpoint = form.dataset.endpoint || '/.netlify/functions/register';
       const data = {};
       new FormData(form).forEach((v, k) => data[k] = v);
