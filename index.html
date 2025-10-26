@@ -29,13 +29,12 @@
           </div>
           <nav class="hidden md:flex items-center gap-6">
             <a href="#about" class="hover:text-[#0047AB]">About</a>
-            <a href="#events" class="hover:text-[#0047AB]">Events</a>
-            <a href="#venue" class="hover:text-[#0047AB]">Venue</a>
             <a href="#speakers" class="hover:text-[#0047AB]">Organiser</a>
             <a href="#gallery" class="hover:text-[#0047AB]">Gallery</a>
+            <a href="#events" class="hover:text-[#0047AB]">Events</a>
+            <a href="#venue" class="hover:text-[#0047AB]">Venue</a>
             <a href="https://form.svhrt.com/66d2b3a3b47f83465d1d1076" target="_blank" rel="noopener noreferrer" class="text-white bg-[#0047AB] px-4 py-2 rounded-md">Register</a>
           </nav>
-          <!-- headerCountdown removed per request; countdown will be shown inside the hero under Register Now -->
           <div class="md:hidden">
             <button id="mobileMenuBtn" class="p-2 rounded-md border border-gray-200">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -49,7 +48,7 @@
 
     <!-- HERO -->
     <section id="home" class="relative">
-  <div class="h-[70vh] md:h-[80vh] bg-cover bg-center" style="background-image: url('assets/bg.jpg')">
+      <div class="h-[70vh] md:h-[80vh] bg-cover bg-center" style="background-image: url('assets/bg.jpg')">
         <div class="absolute inset-0 bg-gradient-to-br from-black/50 to-[#0047AB]/20"></div>
         <div class="relative z-10 max-w-7xl mx-auto px-4 py-20 text-center text-white">
           <h1 class="text-4xl md:text-6xl font-bold drop-shadow-lg" data-aos="fade-up">Techfinix'25</h1>
@@ -90,6 +89,49 @@
         </div>
       </section>
 
+      <!-- Event Organized By / Speakers -->
+      <section id="speakers" class="bg-white rounded-xl p-8 shadow-sm mb-10" data-aos="fade-up">
+        <h2 class="text-2xl font-semibold text-[#0047AB] mb-4">Event Organized By</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white rounded-lg p-6 text-center shadow hover:scale-105 transform transition">
+            <img src="assets/chairman.jpg" class="mx-auto rounded-full h-24 w-24 object-cover" alt="Chairman Shri. CA. N.V. Natarajan">
+            <h3 class="mt-4 font-semibold">Shri. CA. N.V. Natarajan</h3>
+            <p class="text-sm text-gray-500">Chairman of Paavai Institutions</p>
+            <p class="mt-3 text-gray-600 text-sm">about.</p>
+          </div>
+
+          <div class="bg-white rounded-lg p-6 text-center shadow hover:scale-105 transform transition">
+            <img src="https://images.unsplash.com/photo-1545996124-1b36c2d5f9c0?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" class="mx-auto rounded-full h-24 w-24 object-cover" alt="Correspondent">
+            <h3 class="mt-4 font-semibold">Smt. Mangai Natarajan</h3>
+            <p class="text-sm text-gray-500">Correspondent of Paavai Institutions</p>
+            <p class="mt-3 text-gray-600 text-sm">about.</p>
+          </div>
+
+          <div class="bg-white rounded-lg p-6 text-center shadow hover:scale-105 transform transition">
+            <img src="assets/pri.jpg" class="mx-auto rounded-full h-24 w-24 object-cover" alt="Principal">
+            <h3 class="mt-4 font-semibold">Dr. M. Premkumar</h3>
+            <p class="text-sm text-gray-500">Principal of Paavai Engineering College</p>
+            <p class="mt-3 text-gray-600 text-sm">about.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <section id="gallery" class="mb-10" data-aos="fade-up">
+        <h2 class="text-2xl font-semibold text-[#0047AB] mb-4">Gallery</h2>
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <a href="#" class="group" data-img="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder">
+            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" class="w-full h-48 object-cover rounded shadow" alt="gallery">
+          </a>
+          <a href="#" class="group" data-img="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder">
+            <img src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" class="w-full h-48 object-cover rounded shadow" alt="gallery">
+          </a>
+          <a href="#" class="group" data-img="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder">
+            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" class="w-full h-48 object-cover rounded shadow" alt="gallery">
+          </a>
+        </div>
+      </section>
+
       <!-- EVENTS -->
       <section id="events" class="mb-10" data-aos="fade-up">
         <div class="flex items-center justify-between mb-6">
@@ -115,9 +157,7 @@
               </div>
               <div class="card-back rounded-lg p-4 bg-white">
                 <h3 class="modal-title text-lg font-semibold">THINKATHON 2.0</h3>
-                <p class="back-content mt-2 text-gray-700">Thinkathon 2.0 is a duo brainstorming hackathon where creativity, logic, and teamwork collide.
-Each team of two will choose their own problem statement on the spot, brainstorm a feasible tech-driven solution, and present it within a given PPT format provided by the organizers.
-It’s not about how well you code — it’s about how smartly you think and how clearly you pitch your innovation.</p>
+                <p class="back-content mt-2 text-gray-700">Thinkathon 2.0 is a duo brainstorming hackathon where creativity, logic, and teamwork collide. Each team of two will choose their own problem statement on the spot, brainstorm a feasible tech-driven solution, and present it within a given PPT format provided by the organizers.</p>
                 <div class="mt-4 flex items-center justify-between">
                   <a href="https://form.svhrt.com/66d2b3a3b47f83465d1d1076" target="_blank" rel="noopener noreferrer" class="bg-[#0047AB] text-white px-4 py-2 rounded">Register</a>
                   <button class="backBtn text-sm text-gray-500">Back</button>
@@ -125,7 +165,6 @@ It’s not about how well you code — it’s about how smartly you think and ho
               </div>
             </div>
           </article>
-          
 
           <!-- Event Card 2 -->
           <article role="button" aria-label="Open details for PAPER PRESENTATION" tabindex="0" aria-expanded="false" aria-pressed="false" class="event-card bg-white rounded-lg p-6 shadow transition-transform transform hover:-translate-y-2 hover:shadow-lg" data-aos="fade-up" data-aos-delay="100" data-title="Paper Presentation" data-desc="Showcase your research and innovations to a panel of judges from industry and academia.">
@@ -199,9 +238,7 @@ It’s not about how well you code — it’s about how smartly you think and ho
               </div>
               <div class="card-back rounded-lg p-4 bg-white">
                 <h3 class="modal-title text-lg font-semibold">PROMPTCRAFT</h3>
-                <p class="back-content mt-2 text-gray-700">PromptCraft is a GenAI-based creative design challenge that turns imagination into visuals.
-Participants will receive a theme on the spot and must use AI image-generation tools (like DALL·E, Midjourney, Leonardo AI, etc.) to create a poster purely through text prompts.
-Your words are your paintbrush — craft a prompt that tells a story through art.</p>
+                <p class="back-content mt-2 text-gray-700">PromptCraft is a GenAI-based creative design challenge that turns imagination into visuals. Participants will receive a theme on the spot and must use AI image-generation tools to create a poster purely through text prompts.</p>
                 <div class="mt-4 flex items-center justify-between">
                   <a href="https://form.svhrt.com/66d2b3a3b47f83465d1d1076" target="_blank" rel="noopener noreferrer" class="bg-[#0047AB] text-white px-4 py-2 rounded">Register</a>
                   <button class="backBtn text-sm text-gray-500">Back</button>
@@ -228,7 +265,7 @@ Your words are your paintbrush — craft a prompt that tells a story through art
               </div>
               <div class="card-back rounded-lg p-4 bg-white">
                 <h3 class="modal-title text-lg font-semibold">PROJECT EXPO</h3>
-                <p class="back-content mt-2 text-gray-700">The Project Expo provides a platform for students to showcase their innovative projects, creative ideas, and technical skills. It encourages hands-on learning and real-world problem-solving through impactful prototypes. The event fosters innovation, collaboration, and knowledge sharing among young tech minds.</p>
+                <p class="back-content mt-2 text-gray-700">The Project Expo provides a platform for students to showcase their innovative projects, creative ideas, and technical skills.</p>
                 <div class="mt-4 flex items-center justify-between">
                   <a href="https://form.svhrt.com/66d2b3a3b47f83465d1d1076" target="_blank" rel="noopener noreferrer" class="bg-[#0047AB] text-white px-4 py-2 rounded">Register</a>
                   <button class="backBtn text-sm text-gray-500">Back</button>
@@ -256,57 +293,10 @@ Your words are your paintbrush — craft a prompt that tells a story through art
           <div class="grid grid-cols-2 gap-4">
             <img src="assets/paavai.jpg" alt="campus" class="w-full h-40 object-cover rounded">            
             <img src="assets/cimg2.jpg" alt="" class="w-full h-40 object-cover rounded">
-            
+          </div>
         </div>
       </section>
 
-      <!-- SPEAKERS -->
-      <section id="speakers" class="mb-10" data-aos="fade-up">
-        <h2 class="text-2xl font-semibold text-[#0047AB] mb-4">Event Organized By </h2>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="bg-white rounded-lg p-6 text-center shadow hover:scale-105 transform transition">
-            <img src="assets/chairman.jpg" class="mx-auto rounded-full h-24 w-24 object-cover" alt="Chairman Shri. CA. N.V. Natarajan">
-            <h3 class="mt-4 font-semibold">Shri. CA. N.V. Natarajan</h3>
-            <p class="text-sm text-gray-500">Chairman of Paavai Institutions</p>
-            <p class="mt-3 text-gray-600 text-sm">about.</p>
-          </div>
-
-          <div class="bg-white rounded-lg p-6 text-center shadow hover:scale-105 transform transition">
-            <img src="https://images.unsplash.com/photo-1545996124-1b36c2d5f9c0?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" class="mx-auto rounded-full h-24 w-24 object-cover" alt="Correspondent">
-            <h3 class="mt-4 font-semibold">Smt. Mangai Natarajan</h3>
-            <p class="text-sm text-gray-500">Correspondent of Paavai Institutions</p>
-            <p class="mt-3 text-gray-600 text-sm">about.</p>
-          </div>
-
-          <div class="bg-white rounded-lg p-6 text-center shadow hover:scale-105 transform transition">
-            <img src="assets/pri.jpg" class="mx-auto rounded-full h-24 w-24 object-cover" alt="Principal">
-            <h3 class="mt-4 font-semibold">Dr. M. Premkumar</h3>
-            <p class="text-sm text-gray-500">Principal of Paavai Engineering College</p>
-            <p class="mt-3 text-gray-600 text-sm">about.</p>
-          </div>
-
-          
-        </div>
-      </section>
-
-      <!-- GALLERY -->
-      <section id="gallery" class="mb-10" data-aos="fade-up">
-        <h2 class="text-2xl font-semibold text-[#0047AB] mb-4">Gallery</h2>
-        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-          <a href="#" class="group" data-img="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder">
-            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" class="w-full h-48 object-cover rounded shadow" alt="gallery">
-          </a>
-          <a href="#" class="group" data-img="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder">
-            <img src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" class="w-full h-48 object-cover rounded shadow" alt="gallery">
-          </a>
-          <a href="#" class="group" data-img="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder">
-            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" class="w-full h-48 object-cover rounded shadow" alt="gallery">
-          </a>
-        </div>
-      </section>
-
-      <!-- REGISTRATION -->
-      
     </main>
 
     <!-- FOOTER -->
@@ -332,6 +322,7 @@ Your words are your paintbrush — craft a prompt that tells a story through art
         </div>
       </div>
     </footer>
+    
 
     <!-- Lightbox modal -->
     <div id="lightbox" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50">
