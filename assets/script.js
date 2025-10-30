@@ -72,13 +72,37 @@ document.addEventListener('DOMContentLoaded', function () {
   const cdInterval = setInterval(updateCountdown, 1000);
   updateCountdown();
 
-  // Mobile menu (basic toggle)
+  // Mobile menu (toggle overlay)
   const mobileBtn = document.getElementById('mobileMenuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  const mobileNavClose = document.getElementById('mobileNavClose');
+  function openMobileNav() {
+    if (!mobileNav) return;
+    mobileNav.classList.remove('hidden');
+    mobileNav.setAttribute('aria-hidden', 'false');
+    mobileBtn.setAttribute('aria-expanded', 'true');
+    // trap focus to close button for simplicity
+    setTimeout(() => mobileNavClose && mobileNavClose.focus(), 50);
+  }
+  function closeMobileNav() {
+    if (!mobileNav) return;
+    mobileNav.classList.add('hidden');
+    mobileNav.setAttribute('aria-hidden', 'true');
+    mobileBtn.setAttribute('aria-expanded', 'false');
+    mobileBtn && mobileBtn.focus();
+  }
   if (mobileBtn) {
-    mobileBtn.addEventListener('click', () => {
-      alert('Mobile menu - for this scaffold, navigation links are in the header on larger screens.');
+    mobileBtn.setAttribute('aria-controls', 'mobileNav');
+    mobileBtn.setAttribute('aria-expanded', 'false');
+    mobileBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openMobileNav();
     });
   }
+  if (mobileNavClose) mobileNavClose.addEventListener('click', closeMobileNav);
+  // close when clicking backdrop links or pressing Escape
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMobileNav(); });
+  document.querySelectorAll('#mobileNav a').forEach(a => a.addEventListener('click', () => closeMobileNav()));
 
   // Back to top
   const backToTop = document.getElementById('backToTop');
