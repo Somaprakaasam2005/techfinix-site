@@ -36,7 +36,7 @@
             <a href="https://forms.gle/GHzVXHnRqBFHBy24A" target="_blank" rel="noopener noreferrer" class="text-white bg-[#0047AB] px-4 py-2 rounded-md">Register</a>
           </nav>
           <div class="md:hidden">
-            <button id="mobileMenuBtn" class="p-2 rounded-md border border-gray-200">
+            <button id="mobileMenuBtn" class="p-2 rounded-md border border-gray-200" aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle navigation">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
@@ -45,6 +45,21 @@
         </div>
       </div>
     </header>
+
+    <!-- Mobile menu (right-side slide panel on small screens) -->
+    <nav id="mobileMenu" class="md:hidden fixed inset-y-0 right-0 w-72 max-w-full transform translate-x-full transition-transform duration-300 ease-in-out bg-white shadow-lg z-50" aria-hidden="true">
+      <div class="h-full overflow-y-auto px-4 py-6 flex flex-col gap-3">
+        <a href="#about" class="py-2 px-3 rounded hover:bg-gray-50">About</a>
+        <a href="#speakers" class="py-2 px-3 rounded hover:bg-gray-50">Organiser</a>
+        <a href="#gallery" class="py-2 px-3 rounded hover:bg-gray-50">Gallery</a>
+        <a href="#events" class="py-2 px-3 rounded hover:bg-gray-50">Events</a>
+        <a href="#venue" class="py-2 px-3 rounded hover:bg-gray-50">Venue</a>
+        <a href="https://forms.gle/GHzVXHnRqBFHBy24A" target="_blank" rel="noopener noreferrer" class="py-2 px-3 rounded bg-[#0047AB] text-white text-center">Register</a>
+      </div>
+    </nav>
+
+    <!-- Overlay for mobile menu (click to close) -->
+    <div id="mobileOverlay" class="hidden md:hidden fixed inset-0 bg-black/40 z-40" aria-hidden="true"></div>
 
     <!-- HERO -->
     <section id="home" class="relative">
@@ -97,21 +112,21 @@
             <img src="assets/chairman.jpg" class="mx-auto rounded-full h-24 w-24 object-cover" alt="Chairman Shri. CA. N.V. Natarajan">
             <h3 class="mt-4 font-semibold">Shri. CA. N.V. Natarajan</h3>
             <p class="text-sm text-gray-500">Chairman of Paavai Institutions</p>
-            <p class="mt-3 text-gray-600 text-sm">about.</p>
+            <p class="mt-3 text-gray-600 text-sm"></p>
           </div>
 
           <div class="bg-white rounded-lg p-6 text-center shadow hover:scale-105 transform transition">
             <img src="assets/corr.png" class="mx-auto rounded-full h-24 w-24 object-cover" alt="Correspondent">
             <h3 class="mt-4 font-semibold">Smt. Mangai Natarajan</h3>
             <p class="text-sm text-gray-500">Correspondent of Paavai Institutions</p>
-            <p class="mt-3 text-gray-600 text-sm">about.</p>
+            <p class="mt-3 text-gray-600 text-sm"></p>
           </div>
 
           <div class="bg-white rounded-lg p-6 text-center shadow hover:scale-105 transform transition">
             <img src="assets/pri.jpg" class="mx-auto rounded-full h-24 w-24 object-cover" alt="Principal">
             <h3 class="mt-4 font-semibold">Dr. M. Premkumar</h3>
             <p class="text-sm text-gray-500">Principal of Paavai Engineering College</p>
-            <p class="mt-3 text-gray-600 text-sm">about.</p>
+            <p class="mt-3 text-gray-600 text-sm"></p>
           </div>
         </div>
       </section>
@@ -284,7 +299,7 @@
             <ul class="mt-4 text-gray-700 space-y-2">
               <li><strong>Venue:</strong> Paavai Engineering College, Namakkal</li>
               <li><strong>Nearest Railway Station:</strong> Namakkal </li>
-              <li><strong>Nearest Bus Stop:</strong> Rasipuram Road</li>
+              <li><strong>Nearest Bus Stop:</strong> Andalur Gate </li>
             </ul>
           </div>
           <div class="grid grid-cols-2 gap-4">

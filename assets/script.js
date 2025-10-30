@@ -72,12 +72,46 @@ document.addEventListener('DOMContentLoaded', function () {
   const cdInterval = setInterval(updateCountdown, 1000);
   updateCountdown();
 
-  // Mobile menu (basic toggle)
+  // Mobile menu (toggle + accessibility)
   const mobileBtn = document.getElementById('mobileMenuBtn');
-  if (mobileBtn) {
-    mobileBtn.addEventListener('click', () => {
-      alert('Mobile menu - for this scaffold, navigation links are in the header on larger screens.');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileOverlay = document.getElementById('mobileOverlay');
+  if (mobileBtn && mobileMenu && mobileOverlay) {
+    const setExpanded = (val) => {
+      mobileBtn.setAttribute('aria-expanded', String(val));
+      mobileMenu.setAttribute('aria-hidden', String(!val));
+      mobileOverlay.setAttribute('aria-hidden', String(!val));
+      if (val) {
+        // slide in: remove translate-x-full
+        mobileMenu.classList.remove('translate-x-full');
+        mobileOverlay.classList.remove('hidden');
+        // prevent body scroll
+        document.body.style.overflow = 'hidden';
+      } else {
+        // slide out: add translate-x-full
+        mobileMenu.classList.add('translate-x-full');
+        mobileOverlay.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    };
+
+    mobileBtn.addEventListener('click', (e) => {
+      const expanded = mobileBtn.getAttribute('aria-expanded') === 'true';
+      setExpanded(!expanded);
     });
+
+    // Close mobile menu when a link is clicked (so it doesn't remain open)
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => setExpanded(false));
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' || e.key === 'Esc') setExpanded(false);
+    });
+
+    // Click overlay to close
+    mobileOverlay.addEventListener('click', () => setExpanded(false));
   }
 
   // Back to top
